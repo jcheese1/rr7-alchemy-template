@@ -11,19 +11,20 @@ const fileStateStore = (scope: Scope) => new FileSystemStateStore(scope);
 
 const cloudflareStateStore = (scope: Scope) => new CloudflareStateStore(scope, {
   stateToken: alchemy.secret(process.env.ALCHEMY_STATE_TOKEN),
-  scriptName: `react-router-alchemy-cloudflare-app-site-${stage}`
+  scriptName: `react-router-alchemy-cloudflare-app-state-service-${stage === "prod" ? "prod" : "dev"}`
 });
 
 const app = await alchemy("react-router-alchemy-cloudflare-app", {
   stage,
-  password: process.env.ALCHEMY_PASSWORD as string,
+  password: process.env.ALCHEMY_PASSWORD,
   stateStore: stage === "dev" ? fileStateStore : cloudflareStateStore,
 });
 
 export const worker = await ReactRouter("react-router-alchemy-cloudflare-app-site", {
+  adopt: true,
   bindings: {
-    PUBLIC_VALUE_FROM_CLOUDFLARE: process.env.PUBLIC_VALUE_FROM_CLOUDFLARE as string,
-    SECRET: alchemy.secret("SECRET")
+    PUBLIC_VALUE_FROM_CLOUDFLARE: process.env.PUBLIC_VALUE_FROM_CLOUDFLARE || "value1",
+    SECRET: alchemy.secret(process.env.SECRET)
   },
 });
 
@@ -32,8 +33,8 @@ if (process.env.PULL_REQUEST) {
   // if this is a PR, add a comment to the PR with the preview URL
   // it will auto-update with each push
   await GitHubComment("preview-comment", {
-    owner: "your-username",
-    repository: "your-repo",
+    owner: process.env.GITHUB_REPOSITORY_OWNER || "your-username",
+    repository: process.env.GITHUB_REPOSITORY_NAME || "your-repo",
     issueNumber: Number(process.env.PULL_REQUEST),
     body: `
      ## 🚀 Preview Deployed

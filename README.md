@@ -72,6 +72,23 @@ You can then promote a version to production after verification or roll it out p
 npx wrangler versions deploy
 ```
 
+## CI
+
+```bash
+ALCHEMY_PASSWORD=your-encryption-password
+ALCHEMY_STATE_TOKEN=your-state-token
+CLOUDFLARE_API_TOKEN=your-cloudflare-api-token
+CLOUDFLARE_EMAIL=your-cloudflare-email
+```
+
+in Settings -> Secrets -> Actions -> New repository secret.
+
+Now add 'production' and 'staging' environments in github as well, by going to Settings -> Environments -> New environment. Add secrets there.
+
+Now add the newly added secrets to the github actions workflow under `env`.
+
+PUBLIC_ secrets are meant to be public, so you can just hardcode them in alchemy.run.ts
+
 ## Styling
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
