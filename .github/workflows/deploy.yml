@@ -13,8 +13,7 @@ concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: false
 env:
-  STAGE: ${{ github.ref == 'refs/heads/main' && 'prod' || format('pr-{0}',
-    github.event.number) }}
+  STAGE: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || 'prod' }}
 jobs:
   deploy:
     if: ${{ github.event.action != 'closed' }}
@@ -44,7 +43,7 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
   cleanup:
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'closed' && github.ref != 'refs/heads/main' }}
+    if: ${{ github.event.action == 'closed' }}
     permissions:
       id-token: write
       contents: read
