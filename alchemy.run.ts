@@ -2,12 +2,12 @@
 
 import alchemy, { Scope } from "alchemy";
 import { ReactRouter } from "alchemy/cloudflare";
-import { CloudflareStateStore, SQLiteStateStore } from "alchemy/state";
+import { CloudflareStateStore, FileSystemStateStore } from "alchemy/state";
 import { GitHubComment } from "alchemy/github";
 
 const stage = process.env.STAGE ?? "dev";
 
-const localStateStore = (scope: Scope) => new SQLiteStateStore(scope);
+const fileStateStore = (scope: Scope) => new FileSystemStateStore(scope);
 
 const cloudflareStateStore = (scope: Scope) => new CloudflareStateStore(scope, {
   stateToken: alchemy.secret(process.env.ALCHEMY_STATE_TOKEN),
@@ -17,7 +17,7 @@ const cloudflareStateStore = (scope: Scope) => new CloudflareStateStore(scope, {
 const app = await alchemy("react-router-alchemy-cloudflare-app", {
   stage,
   password: process.env.ALCHEMY_PASSWORD as string,
-  stateStore: process.env.NODE_ENV === "development" ? localStateStore : cloudflareStateStore,
+  stateStore: stage === "dev" ? fileStateStore : cloudflareStateStore,
 });
 
 export const worker = await ReactRouter("react-router-alchemy-cloudflare-app-site", {
