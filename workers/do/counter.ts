@@ -1,6 +1,6 @@
 
 import { DurableObject } from "cloudflare:workers";
-import type { worker } from "../alchemy.run";
+import type { worker } from "../../alchemy.run";
 
 export class Counter extends DurableObject {
   declare env: typeof worker.Env;

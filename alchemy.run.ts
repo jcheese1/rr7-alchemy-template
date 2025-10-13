@@ -4,6 +4,7 @@ import alchemy, { Scope } from "alchemy";
 import { DurableObjectNamespace, ReactRouter } from "alchemy/cloudflare";
 import { CloudflareStateStore, FileSystemStateStore } from "alchemy/state";
 import { GitHubComment } from "alchemy/github";
+import { Counter } from "./workers/do/counter";
 
 const stage = process.env.STAGE ?? "dev";
 
@@ -20,7 +21,7 @@ const app = await alchemy("react-router-alchemy-cloudflare-app", {
   stateStore: stage === "dev" ? fileStateStore : cloudflareStateStore,
 });
 
-const counter = DurableObjectNamespace("counter", {
+const counter = DurableObjectNamespace<Counter>("counter", {
   className: "Counter",
   sqlite: true
 })
