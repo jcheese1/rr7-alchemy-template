@@ -20,7 +20,7 @@ const app = await alchemy("react-router-alchemy-cloudflare-app", {
   stateStore: stage === "dev" ? fileStateStore : cloudflareStateStore,
 });
 
-export const worker = await ReactRouter("react-router-alchemy-cloudflare-app-site", {
+export const worker = await ReactRouter("website", {
   adopt: true,
   bindings: {
     PUBLIC_VALUE_FROM_CLOUDFLARE: process.env.PUBLIC_VALUE_FROM_CLOUDFLARE || "value1",
