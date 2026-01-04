@@ -115,6 +115,15 @@ Secrets will no longer be managed in the workers dashboard, it will all be conso
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
 
+
+## Lint/Format
+
+```sh
+bunx ultracite init # install ultracite
+```
+
+and follow the prompts.
+
 ---
 
 Built with ❤️ using React Router.
