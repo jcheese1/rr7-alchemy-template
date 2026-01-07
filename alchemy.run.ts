@@ -30,7 +30,7 @@ export const worker = await ReactRouter("website", {
   adopt: true,
   bindings: {
     PUBLIC_VALUE_FROM_CLOUDFLARE: process.env.PUBLIC_VALUE_FROM_CLOUDFLARE || "value1",
-    SECRET: alchemy.secret(process.env.SECRET),
+    // SECRET: alchemy.secret(process.env.SECRET),
     COUNTER: counter
   },
 });

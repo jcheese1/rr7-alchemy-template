@@ -1,5 +1,7 @@
 ---
 description: Scaffold a mock landing page based on a description
+agent: build
+model: opencode/minimax-m2.1-free
 ---
 
 Create a mock landing page for: {$ARGUMENTS}

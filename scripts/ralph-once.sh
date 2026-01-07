@@ -1,6 +1,6 @@
 set -e
 
-export OPENCODE_PERMISSION='{"$schema":"https://opencode.ai/config.json","permission":{"read":{"*":"allow","*.env":"deny","*.env.*":"deny","*.env.example":"allow"},"edit":{"*":"allow","*.env":"deny","*.env.*":"deny","*.env.example":"allow"},"bash":{"git status":"allow","git push":"allow"}}}'
+export OPENCODE_PERMISSION='{"read":{"*":"allow","*.env":"deny","*.env.*":"deny","*.env.example":"allow"},"edit":{"*":"allow","*.env":"deny","*.env.*":"deny","*.env.example":"allow"},"bash":{"git status":"allow","git push":"allow"}}'
 
 opencode run "@plans/prd.json @progress.txt \
 1. Find the highest-priority feature to work on and work only on that feature. \

@@ -1,5 +1,7 @@
 set -e
 
+export OPENCODE_PERMISSION='{"read":{"*":"allow","*.env":"deny","*.env.*":"deny","*.env.example":"allow"},"edit":{"*":"allow","*.env":"deny","*.env.*":"deny","*.env.example":"allow"},"bash":{"git status":"allow","git push":"allow"}}'
+
 if [ -z "$1" ]; then
 echo "Usage: $0 ‹iterations›"
 exit 1

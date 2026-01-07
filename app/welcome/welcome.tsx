@@ -1,7 +1,7 @@
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
-export function Welcome({ message, secret }: { message: string, secret: string }) {
+export function Welcome({ message }: { message: string }) {
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
@@ -39,7 +39,6 @@ export function Welcome({ message, secret }: { message: string, secret: string }
                 </li>
               ))}
               <li className="self-stretch p-3 leading-normal">{message}</li>
-              <li className="self-stretch p-3 text-red-500 leading-normal">{secret}</li>
             </ul>
           </nav>
         </div>
