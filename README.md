@@ -2,7 +2,7 @@
 
 [![Deployed with Alchemy](https://alchemy.run/alchemy-badge.svg)](https://alchemy.run)
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A highly opinionated, modern, production-ready template for building full-stack React applications using React Router.
 
 ## Features
 
@@ -110,6 +110,11 @@ Secrets will no longer be managed in the workers dashboard, it will all be conso
 - Add the newly added secret under `ReactRouter`s `bindings` in `alchemy.run.ts`. If its a secret, use `alchemy.secret(process.env.SECRET)`. If its a public value, use `process.env.PUBLIC_VALUE` with a default value.
 - Add the newly added secret under `deploy.yml` under `env`.
 - Lastly, add the newly added secret to both `staging` and `production` environments in github.
+
+## AI (optional)
+- Uses opencode as the AI agent. Make sure to have the opencode CLI installed with opencode zen.
+- Open opencode from the root of the project, and run `/scaffold {description of the project}` to have it create a base UI for the project.
+- Ralph scripts are under `/scripts`. If you plan to use it, make sure that `plans/prd.json` is filled in with the project's PRD.
 
 ## Styling
 

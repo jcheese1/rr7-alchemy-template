@@ -1,0 +1,6 @@
+[{
+  "category": "ui",
+  "description": "Add a new header UI component to the application.",
+  "steps": ["Has a logo", "Has a navigation", "Has a search input", "Has a user menu"],
+  "passes": false
+}]
