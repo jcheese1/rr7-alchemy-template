@@ -12,13 +12,11 @@ Create a mock landing page for: {$ARGUMENTS}
    ```
    @theme {$ARGUMENTS}
    ```
-   The theme agent will return CSS variables - use these in step 3.
+   The theme agent will return CSS variables - use these to update the `app/app.css` file.
 
-2. **Use the `tailwindcss` skill** to build responsive React components
+2. **Use the `frontend-design` skill** to understand the design direction and the components to use.
 
-3. **Create/update these files**:
-   - `app/app.css` - Add the theme variables from the @theme agent (colors, fonts, radius)
-   - `app/routes/home.tsx` - The landing page route with sections
+3. **Use the `tailwindcss` skill** to build responsive React components as you populate `app/routes/home.tsx`.
 
 ## Landing Page Structure
 
@@ -30,11 +28,8 @@ Create a single-page layout with these sections:
 ## Requirements
 
 - Mobile-first responsive design (use `md:` and `lg:` breakpoints)
-- Dark mode support (use `dark:` variants)
 - Use semantic color tokens from the theme (`bg-primary`, `text-muted-foreground`, etc.)
+- Try not to use arbitrary colors - use the theme variables instead.
+- Do not inline css - use the theme variables instead. If you need to add animations, add them under `@theme inline`.
 - Keep it minimal - this is a visual scaffold to get a feel for the design
 - Use placeholder text/images where needed
-
-## Output
-
-After creating the files, run `bun run dev` and tell the user to open http://localhost:5173 to preview.

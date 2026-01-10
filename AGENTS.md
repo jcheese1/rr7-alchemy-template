@@ -52,19 +52,14 @@ alchemy.run.ts        # Alchemy deployment configuration
 | `bun run deploy:staging` | Deploy to staging environment |
 | `bun run deploy:production` | Deploy to production environment |
 | `bun run destroy` | Tear down Alchemy resources |
-| `bun run components @coss/<name>` | Add a UI component from coss ui |
 
 ### UI Components
 
-When you need a UI component (button, dialog, form, etc.), use coss ui:
-
-```bash
-bun run components @coss/button
-bun run components @coss/dialog
-bun run components @coss/form
-```
+When you need a UI component (button, dialog, form, etc.), use the ones available in app/components.
 
 Available components: accordion, alert, alert-dialog, autocomplete, avatar, badge, breadcrumb, button, card, checkbox, checkbox-group, collapsible, combobox, command, dialog, empty, field, fieldset, form, frame, group, input, input-group, kbd, label, menu, meter, number-field, pagination, popover, preview-card, progress, radio-group, scroll-area, select, separator, sheet, skeleton, slider, spinner, switch, table, tabs, textarea, toast, toggle, toggle-group, toolbar, tooltip.
+
+These use base-ui as the foundation as opposed to radix. The main difference is that base-ui does not have an `asChild` prop. Instead, it uses the `render` prop to render the component as a child.
 
 Full docs: https://coss.com/ui/llms.txt
 
