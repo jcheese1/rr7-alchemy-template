@@ -7,90 +7,34 @@ description: Build React components with Tailwind CSS v4 utility classes. Use wh
 
 Build responsive React components using Tailwind CSS v4 utility classes.
 
-## Component Structure
-
-```tsx
-interface ButtonProps {
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
-  children: React.ReactNode;
-}
-
-function Button({ variant = "primary", size = "md", children }: ButtonProps) {
-  const baseClasses = "inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-2 focus:outline-offset-2";
-  
-  const variants = {
-    primary: "bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-indigo-500",
-    secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:outline-gray-500 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700",
-    outline: "border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-gray-500 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800",
-  };
-  
-  const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
-  };
-
-  return (
-    <button className={`${baseClasses} ${variants[variant]} ${sizes[size]}`}>
-      {children}
-    </button>
-  );
-}
-```
-
 ## Responsive Design (Mobile-First)
 
-Breakpoints apply at that size *and above*:
+Breakpoints apply at that size _and above_:
 
-| Prefix | Min Width | Usage |
-|--------|-----------|-------|
-| (none) | 0 | Mobile/default styles |
-| `sm:` | 40rem (640px) | Small tablets |
-| `md:` | 48rem (768px) | Tablets |
-| `lg:` | 64rem (1024px) | Laptops |
-| `xl:` | 80rem (1280px) | Desktops |
-| `2xl:` | 96rem (1536px) | Large screens |
+| Prefix | Min Width      | Usage                 |
+| ------ | -------------- | --------------------- |
+| (none) | 0              | Mobile/default styles |
+| `sm:`  | 40rem (640px)  | Small tablets         |
+| `md:`  | 48rem (768px)  | Tablets               |
+| `lg:`  | 64rem (1024px) | Laptops               |
+| `xl:`  | 80rem (1280px) | Desktops              |
+| `2xl:` | 96rem (1536px) | Large screens         |
 
 ```tsx
 // Stack on mobile, row on md+
 <div className="flex flex-col gap-4 md:flex-row md:items-center">
   <img className="w-full md:w-48 md:shrink-0" src={src} />
   <div className="space-y-2">
-    <h2 className="text-xl md:text-2xl font-bold">{title}</h2>
+    <h2 className="text-xl font-bold md:text-2xl">{title}</h2>
     <p className="text-gray-600">{description}</p>
   </div>
 </div>
 ```
 
-## Dark Mode
-
-Use `dark:` variant (uses `prefers-color-scheme` by default):
-
-```tsx
-<div className="bg-white dark:bg-gray-900">
-  <h1 className="text-gray-900 dark:text-white">Title</h1>
-  <p className="text-gray-600 dark:text-gray-400">Description</p>
-</div>
-```
-
-For manual toggle, add to CSS:
-```css
-@custom-variant dark (&:where(.dark, .dark *));
-```
-
-Then toggle `.dark` class on `<html>`.
-
 ## Interactive States
 
 ```tsx
-<button className="
-  bg-blue-500 
-  hover:bg-blue-600 
-  focus:outline-2 focus:outline-offset-2 focus:outline-blue-500
-  active:bg-blue-700
-  disabled:opacity-50 disabled:cursor-not-allowed
-">
+<button className="bg-blue-500 hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 active:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">
   Click me
 </button>
 ```
@@ -133,7 +77,9 @@ Container breakpoints: `@3xs` (16rem) through `@7xl` (80rem).
 
 ```tsx
 <div className="rounded-xl bg-white p-6 shadow-lg ring-1 ring-black/5 dark:bg-gray-800 dark:ring-white/10">
-  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+    {title}
+  </h3>
   <p className="mt-2 text-gray-600 dark:text-gray-400">{description}</p>
 </div>
 ```
@@ -143,13 +89,7 @@ Container breakpoints: `@3xs` (16rem) through `@7xl` (80rem).
 ```tsx
 <input
   type="text"
-  className="
-    block w-full rounded-lg border border-gray-300 px-4 py-2
-    text-gray-900 placeholder:text-gray-400
-    focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none
-    disabled:bg-gray-50 disabled:text-gray-500
-    dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500
-  "
+  className="block w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:bg-gray-50 disabled:text-gray-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500"
   placeholder="Enter text..."
 />
 ```
@@ -159,14 +99,18 @@ Container breakpoints: `@3xs` (16rem) through `@7xl` (80rem).
 ```tsx
 const badgeVariants = {
   default: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-  success: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
-  warning: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+  success:
+    "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+  warning:
+    "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
   error: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
 };
 
-<span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${badgeVariants[variant]}`}>
+<span
+  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${badgeVariants[variant]}`}
+>
   {label}
-</span>
+</span>;
 ```
 
 ### Avatar
@@ -176,12 +120,14 @@ const badgeVariants = {
   src={src}
   alt={name}
   className="size-10 rounded-full ring-2 ring-white dark:ring-gray-800"
-/>
+/>;
 
-{/* Avatar with fallback initials */}
+{
+  /* Avatar with fallback initials */
+}
 <div className="flex size-10 items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
   {initials}
-</div>
+</div>;
 ```
 
 ### Modal/Dialog Backdrop
@@ -194,7 +140,10 @@ const badgeVariants = {
 
 ```tsx
 <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black/5 dark:bg-gray-800 dark:ring-white/10">
-  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+  <a
+    href="#"
+    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+  >
     Option
   </a>
 </div>
@@ -204,13 +153,13 @@ const badgeVariants = {
 
 The `--spacing` multiplier (default 0.25rem = 4px):
 
-| Class | Value |
-|-------|-------|
+| Class | Value         |
+| ----- | ------------- |
 | `p-1` | 0.25rem (4px) |
-| `p-2` | 0.5rem (8px) |
-| `p-4` | 1rem (16px) |
+| `p-2` | 0.5rem (8px)  |
+| `p-4` | 1rem (16px)   |
 | `p-6` | 1.5rem (24px) |
-| `p-8` | 2rem (32px) |
+| `p-8` | 2rem (32px)   |
 
 Works with: `p-*`, `m-*`, `gap-*`, `space-x-*`, `space-y-*`, `w-*`, `h-*`, `size-*`, `inset-*`, etc.
 
@@ -231,6 +180,7 @@ For one-off values not in the theme:
 ```
 
 For CSS variables:
+
 ```tsx
 <div className="bg-(--my-color) text-(--my-text-color)">
 ```

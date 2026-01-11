@@ -48,6 +48,13 @@ Generate custom themes using semantic color tokens following shadcn/ui patterns.
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --destructive-foreground: oklch(0.985 0 0);
+  --info: oklch(0.646 0.222 41.116);
+  --info-foreground: oklch(0.985 0 0);
+  --success: oklch(0.398 0.07 227.392);
+  --success-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.828 0.189 84.429);
+  --warning-foreground: oklch(0.985 0 0);
 }
 
 .dark {
@@ -82,51 +89,58 @@ Generate custom themes using semantic color tokens following shadcn/ui patterns.
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.439 0 0);
+  --destructive-foreground: oklch(0.985 0 0);
+  --info: oklch(0.646 0.222 41.116);
+  --info-foreground: oklch(0.985 0 0);
+  --success: oklch(0.398 0.07 227.392);
+  --success-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.828 0.189 84.429);
+  --warning-foreground: oklch(0.985 0 0);
 }
 ```
 
 ## Token Reference
 
-| Token | Purpose |
-|-------|---------|
-| `--background` | Page background |
-| `--foreground` | Default text color |
-| `--card` | Card background |
-| `--card-foreground` | Card text |
-| `--popover` | Popover/dropdown background |
-| `--popover-foreground` | Popover text |
-| `--primary` | Primary buttons, links |
-| `--primary-foreground` | Text on primary |
-| `--secondary` | Secondary buttons |
-| `--secondary-foreground` | Text on secondary |
-| `--muted` | Muted backgrounds |
-| `--muted-foreground` | Muted/subtle text |
-| `--accent` | Hover highlights |
-| `--accent-foreground` | Text on accent |
-| `--destructive` | Destructive actions (delete, error) |
-| `--border` | Default borders |
-| `--input` | Input borders |
-| `--ring` | Focus rings |
-| `--chart-1` to `--chart-5` | Chart/graph colors |
-| `--sidebar` | Sidebar background |
-| `--sidebar-*` | Sidebar-specific variants |
-| `--radius` | Default border radius |
-| `--font-sans` | Sans-serif font stack |
-| `--font-serif` | Serif font stack |
-| `--font-mono` | Monospace font stack |
+| Token                      | Purpose                             |
+| -------------------------- | ----------------------------------- |
+| `--background`             | Page background                     |
+| `--foreground`             | Default text color                  |
+| `--card`                   | Card background                     |
+| `--card-foreground`        | Card text                           |
+| `--popover`                | Popover/dropdown background         |
+| `--popover-foreground`     | Popover text                        |
+| `--primary`                | Primary buttons, links              |
+| `--primary-foreground`     | Text on primary                     |
+| `--secondary`              | Secondary buttons                   |
+| `--secondary-foreground`   | Text on secondary                   |
+| `--muted`                  | Muted backgrounds                   |
+| `--muted-foreground`       | Muted/subtle text                   |
+| `--accent`                 | Hover highlights                    |
+| `--accent-foreground`      | Text on accent                      |
+| `--destructive`            | Destructive actions (delete, error) |
+| `--border`                 | Default borders                     |
+| `--input`                  | Input borders                       |
+| `--ring`                   | Focus rings                         |
+| `--chart-1` to `--chart-5` | Chart/graph colors                  |
+| `--sidebar`                | Sidebar background                  |
+| `--sidebar-*`              | Sidebar-specific variants           |
+| `--radius`                 | Default border radius               |
+| `--font-sans`              | Sans-serif font stack               |
+| `--font-serif`             | Serif font stack                    |
+| `--font-mono`              | Monospace font stack                |
 
-## Font Selection
+## Font Selection Examples
 
 Choose fonts that match the theme's personality:
 
-| Style | Sans | Serif | Mono |
-|-------|------|-------|------|
-| **Modern/Clean** | Inter, Geist | Source Serif 4 | Geist Mono |
-| **Brutalist** | Helvetica Neue, Akzidenz-Grotesk | None | IBM Plex Mono |
-| **Friendly** | AR One Sans, Nunito | Merriweather | Fira Code |
-| **Editorial** | Archivo, Sora | Playfair Display, Lora | JetBrains Mono |
-| **Technical** | IBM Plex Sans | IBM Plex Serif | IBM Plex Mono |
-| **Elegant** | Cormorant Garamond | Libre Baskerville | DM Mono |
+| Style            | Sans                             | Serif                  | Mono           |
+| ---------------- | -------------------------------- | ---------------------- | -------------- |
+| **Modern/Clean** | Inter, Geist                     | Source Serif 4         | Geist Mono     |
+| **Brutalist**    | Helvetica Neue, Akzidenz-Grotesk | None                   | IBM Plex Mono  |
+| **Friendly**     | AR One Sans, Nunito              | Merriweather           | Fira Code      |
+| **Editorial**    | Archivo, Sora                    | Playfair Display, Lora | JetBrains Mono |
+| **Technical**    | IBM Plex Sans                    | IBM Plex Serif         | IBM Plex Mono  |
+| **Elegant**      | Cormorant Garamond               | Libre Baskerville      | DM Mono        |
 
 Always include fallbacks: `ui-sans-serif, system-ui, sans-serif`
 
@@ -140,17 +154,17 @@ Always include fallbacks: `ui-sans-serif, system-ui, sans-serif`
 
 ### Hue Reference
 
-| Hue | Color |
-|-----|-------|
-| 0-30 | Red |
-| 30-60 | Orange |
-| 60-90 | Yellow |
-| 90-150 | Green |
+| Hue     | Color     |
+| ------- | --------- |
+| 0-30    | Red       |
+| 30-60   | Orange    |
+| 60-90   | Yellow    |
+| 90-150  | Green     |
 | 150-200 | Teal/Cyan |
-| 200-260 | Blue |
-| 260-300 | Purple |
-| 300-330 | Pink |
-| 330-360 | Rose |
+| 200-260 | Blue      |
+| 260-300 | Purple    |
+| 300-330 | Pink      |
+| 330-360 | Rose      |
 
 ## Example: Ocean Theme
 
@@ -276,7 +290,7 @@ Always include fallbacks: `ui-sans-serif, system-ui, sans-serif`
 
 ```tsx
 <div className="bg-background text-foreground">
-  <div className="bg-card text-card-foreground rounded-lg border">
+  <div className="rounded-lg border bg-card text-card-foreground">
     <button className="bg-primary text-primary-foreground">Action</button>
     <button className="bg-secondary text-secondary-foreground">Cancel</button>
     <p className="text-muted-foreground">Helper text</p>
