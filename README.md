@@ -21,7 +21,7 @@ A highly opinionated, modern, production-ready template for building full-stack 
 Install the dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
 ### Development
@@ -29,7 +29,7 @@ npm install
 Start the development server with HMR:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -39,7 +39,7 @@ Your application will be available at `http://localhost:5173`.
 Preview the production build locally:
 
 ```bash
-npm run preview
+bun preview
 ```
 
 ## Building for Production
@@ -47,7 +47,7 @@ npm run preview
 Create a production build:
 
 ```bash
-npm run build
+bun build
 ```
 
 ## Deployment
@@ -57,19 +57,19 @@ Deployment is done using the Wrangler CLI.
 To build and deploy directly to production:
 
 ```sh
-npm run deploy
+bun deploy
 ```
 
 To deploy a preview URL:
 
 ```sh
-npx wrangler versions upload
+bunx wrangler versions upload
 ```
 
 You can then promote a version to production after verification or roll it out progressively.
 
 ```sh
-npx wrangler versions deploy
+bunx wrangler versions deploy
 ```
 
 ## CI
