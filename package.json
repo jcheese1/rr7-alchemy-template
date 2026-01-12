@@ -19,18 +19,19 @@
     "clsx": "^2.1.1",
     "isbot": "^5.1.27",
     "lucide-react": "^0.562.0",
+    "motion": "^12.24.12",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-router": "^7.11.0",
+    "react-router": "^7.12.0",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.19.0",
-    "@react-router/dev": "^7.11.0",
+    "@react-router/dev": "^7.12.0",
     "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^20",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/react": "^19.2.3",
+    "@types/react-dom": "^19.2.3",
     "alchemy": "^0.82.2",
     "miniflare": "^4.20250617.3",
     "shadcn": "latest",
@@ -39,6 +40,6 @@
     "typescript": "^5.8.3",
     "vite": "^7.3.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "wrangler": "^4.56.0"
+    "wrangler": "^4.58.0"
   }
 }
