@@ -10,7 +10,7 @@
     "dev": "alchemy dev",
     "preview": "bun run build && vite preview",
     "typecheck": "react-router typegen && tsc -b",
-    "components": "shadcn add"
+    "install:components": "shadcn add @coss/ui"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
