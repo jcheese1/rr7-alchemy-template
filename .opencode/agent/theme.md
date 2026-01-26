@@ -1,7 +1,7 @@
 ---
 description: Creates custom color themes using the theme-builder skill. Use when generating color schemes, palettes, or themes for a website/app based on a concept, mood, or brand.
 mode: subagent
-model: opencode/grok-code
+model: anthropic/claude-opus-4-5
 tools:
   bash: false
   write: false

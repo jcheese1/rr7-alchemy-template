@@ -1,7 +1,7 @@
 ---
 description: Scaffold a mock landing page based on a description
 agent: build
-model: opencode/minimax-m2.1-free
+model: anthropic/claude-opus-4-5
 ---
 
 Create a unique, memorable mock landing page for: {$ARGUMENTS}
