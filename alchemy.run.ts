@@ -1,12 +1,24 @@
 /// <reference types="@types/bun" />
 
-import alchemy, { Scope } from "alchemy";
+import alchemy from "alchemy";
+import type { Scope } from "alchemy";
 import { DurableObjectNamespace, ReactRouter } from "alchemy/cloudflare";
 import { CloudflareStateStore, FileSystemStateStore } from "alchemy/state";
 import { GitHubComment } from "alchemy/github";
 import { Counter } from "./workers/do/counter";
 
-const stage = process.env.STAGE ?? "dev";
+function resolveStage() {
+  const stageFlagIndex = process.argv.indexOf("--stage");
+  const stageFlag =
+    stageFlagIndex >= 0 ? process.argv.at(stageFlagIndex + 1) : undefined;
+  const equalsStageFlag = process.argv
+    .find((argument) => argument.startsWith("--stage="))
+    ?.slice("--stage=".length);
+
+  return stageFlag ?? equalsStageFlag ?? process.env.STAGE ?? "dev";
+}
+
+const stage = resolveStage();
 
 const fileStateStore = (scope: Scope) => new FileSystemStateStore(scope);
 
@@ -72,5 +84,4 @@ console.log({
 });
 
 await app.finalize();
-
 

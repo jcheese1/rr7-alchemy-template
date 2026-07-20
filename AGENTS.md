@@ -1,12 +1,12 @@
 ## Project Overview
 
-React Router 7 full-stack application deployed to Cloudflare Workers via Alchemy.
+React Router 8 full-stack application deployed to Cloudflare Workers via Alchemy.
 
 ### Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Framework | React Router 7 (SSR) |
+| Framework | React Router 8 (SSR) |
 | Runtime | Cloudflare Workers |
 | Styling | Tailwind CSS v4 |
 | Language | TypeScript |
@@ -46,8 +46,8 @@ alchemy.run.ts        # Alchemy deployment configuration
 |---------|-------------|
 | `bun install` | Install dependencies |
 | `bun run dev` | Start dev server with HMR (localhost:5173) |
-| `bun run build` | Create production build |
-| `bun run preview` | Preview production build locally |
+| `bun run build` | Create production build after `bun run dev` has generated the local Wrangler config |
+| `bun run preview` | Preview production build locally after Alchemy initialization |
 | `bun run typecheck` | Run TypeScript type checking |
 | `bun run deploy:staging` | Deploy to staging environment |
 | `bun run deploy:production` | Deploy to production environment |
@@ -73,7 +73,7 @@ Full docs: https://coss.com/ui/llms.txt
 ### React Router Conventions
 - Routes live in `app/routes/` and are registered in `app/routes.ts`
 - Use `loader` for data fetching, `action` for mutations
-- Access Cloudflare bindings via `context.cloudflare.env`
+- Access Cloudflare bindings via `context.get(cloudflareContext).env`
 
 ### Tailwind CSS v4
 - Theme customization in `app/app.css` using `@theme` directive

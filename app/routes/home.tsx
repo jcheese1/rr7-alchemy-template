@@ -1,4 +1,5 @@
 import type { Route } from "./+types/home";
+import { cloudflareContext } from "../context";
 import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
@@ -9,12 +10,14 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export function loader({ context }: Route.LoaderArgs) {
-  return { 
-    message: context.cloudflare.env.PUBLIC_VALUE_FROM_CLOUDFLARE, 
-    // secret: context.cloudflare.env.SECRET 
+  const { env } = context.get(cloudflareContext);
+
+  return {
+    message: env.PUBLIC_VALUE_FROM_CLOUDFLARE,
+    // secret: env.SECRET
   };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;  
+  return <Welcome message={loaderData.message} />;
 }

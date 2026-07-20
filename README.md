@@ -1,8 +1,8 @@
-# Welcome to React Router!
+# React Router 8 + Alchemy + Cloudflare
 
 [![Deployed with Alchemy](https://alchemy.run/alchemy-badge.svg)](https://alchemy.run)
 
-A highly opinionated, modern, production-ready template for building full-stack React applications using React Router.
+A highly opinionated, modern template for building full-stack React Router 8 applications on Cloudflare Workers with Alchemy.
 
 ## Features
 
@@ -36,80 +36,58 @@ Your application will be available at `http://localhost:5173`.
 
 ## Previewing the Production Build
 
-Preview the production build locally:
+Alchemy generates the local Wrangler configuration when `bun run dev` starts. After that initialization, preview the production build locally:
 
 ```bash
-bun preview
+bun run preview
 ```
 
 ## Building for Production
 
-Create a production build:
+After Alchemy has generated the local Wrangler configuration, create a production build:
 
 ```bash
-bun build
+bun run build
 ```
 
 ## Deployment
 
-Deployment is done using the Wrangler CLI.
+Deployment is managed by Alchemy.
 
 To build and deploy directly to production:
 
 ```sh
-bun deploy
+bun run deploy:production
 ```
 
-To deploy a preview URL:
+To deploy the shared staging stage:
 
 ```sh
-bunx wrangler versions upload
+bun run deploy:staging
 ```
 
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-bunx wrangler versions deploy
-```
+Pull requests are deployed automatically to isolated `pr-<number>` stages by the GitHub Actions workflow and destroyed when the pull request closes.
 
 ## CI
 
-```bash
-ALCHEMY_PASSWORD=your-encryption-password
-ALCHEMY_STATE_TOKEN=your-state-token
-CLOUDFLARE_API_TOKEN=your-cloudflare-api-token
-CLOUDFLARE_EMAIL=your-cloudflare-email
-```
+Create `production` and `staging` environments under **Settings → Environments**, then add these environment secrets to both:
 
-in Settings -> Secrets -> Actions -> New repository secret.
+- `ALCHEMY_PASSWORD`
+- `ALCHEMY_STATE_TOKEN`
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_EMAIL`
 
-```sh
-# add environment secrets to github
-gh secret set -f .env.example (--env production | --env staging)
+Deployments from `main` use `production`; pull-request previews and cleanup use `staging`. Public values can be declared directly in `alchemy.run.ts`.
 
-# add repository secrets to github
-gh secret set -f .env.example
-```
+## Adding Secrets
 
-Now add 'production' and 'staging' environments in github as well, by going to Settings -> Environments -> New environment. Add secrets there. You will no longer manage secrets in the workers dashboard, it will all be consolidated here.
+Secrets are managed through the local environment and the matching GitHub environments:
 
-Make sure to add the secrets to deploy.yml as well.
-
-all preview environments (PRs) will use the staging environment variable.
-
-Now add the newly added secrets to the github actions workflow under `env`.
-
-PUBLIC_ secrets are meant to be public, so you can just hardcode them in alchemy.run.ts
-
-# Add Secrets
-
-Secrets will no longer be managed in the workers dashboard, it will all be consolidated here.
-
-- Add a secret to `.env`
-- Add a the secret with a placeholder value in `.env.example`
-- Add the newly added secret under `ReactRouter`s `bindings` in `alchemy.run.ts`. If its a secret, use `alchemy.secret(process.env.SECRET)`. If its a public value, use `process.env.PUBLIC_VALUE` with a default value.
-- Add the newly added secret under `deploy.yml` under `env`.
-- Lastly, add the newly added secret to both `staging` and `production` environments in github.
+- Add the secret to `.env`.
+- Add a placeholder to `.env.example`.
+- Add the binding to `ReactRouter` in `alchemy.run.ts`. Wrap secrets with `alchemy.secret(process.env.SECRET)`; plain public values can use `process.env.PUBLIC_VALUE` with a default.
+- Pass the secret through the deploy workflow's `env` block.
+- Add it to both the `staging` and `production` GitHub environments.
 
 ## AI (optional)
 - Uses opencode as the AI agent. Make sure to have the opencode CLI installed with opencode zen.

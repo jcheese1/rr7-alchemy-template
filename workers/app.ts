@@ -1,20 +1,12 @@
-import { createRequestHandler } from "react-router";
+import { createRequestHandler, RouterContextProvider } from "react-router";
+
+import { cloudflareContext } from "../app/context";
 import type { CloudflareEnv } from "../alchemy.run";
 import { Counter } from "./do/counter";
 
-export { Counter }
-
-declare module "react-router" {
-  export interface AppLoadContext {
-    cloudflare: {
-      env: CloudflareEnv;
-      ctx: ExecutionContext;
-    };
-  }
-}
+export { Counter };
 
 const requestHandler = createRequestHandler(
-  // @ts-ignore
   () => import("virtual:react-router/server-build"),
   import.meta.env.MODE
 );
@@ -27,8 +19,10 @@ export default {
       const stub = env.COUNTER.get(id);
       return stub.increment();
     }
-    return requestHandler(request, {
-      cloudflare: { env, ctx },
-    });
+
+    const context = new RouterContextProvider();
+    context.set(cloudflareContext, { ctx, env });
+
+    return requestHandler(request, context);
   },
-}
+};
